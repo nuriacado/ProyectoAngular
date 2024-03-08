@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
+  fecha: string | null = null;
 
+  ngOnInit() {
+    let hoy = new Date();
+    this.fecha = hoy.toLocaleDateString();
+  }
 }

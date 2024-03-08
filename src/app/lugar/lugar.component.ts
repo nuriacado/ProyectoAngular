@@ -55,7 +55,6 @@ export class LugarComponent implements OnInit, OnDestroy {
     private _cookieService: CookieService,
     private _comentarioService: ComentarioService,
     private _sharedService: SharedService,
-    private _router: Router
   ) {
     this.valForm = this._fb.group({
       puntos: ['', Validators.required],
@@ -135,7 +134,6 @@ export class LugarComponent implements OnInit, OnDestroy {
     
   }
 
-  //calcula la media de la puntuacion del lugar cuando se inserta una nueva valoracion
   
 
   //comprueba si se tiene la sesion iniciada y con que tipo de usuario
@@ -199,6 +197,7 @@ export class LugarComponent implements OnInit, OnDestroy {
 
   }
 
+  //calcula la media de la puntuacion del lugar cuando se inserta una nueva valoracion
   getMediaPuntuaciones() {
     const subscripcion = this._comentarioService.getComentarios().subscribe ({
       next: (comentarios) => {
@@ -225,10 +224,5 @@ export class LugarComponent implements OnInit, OnDestroy {
       },
     })
   }
-
-  // dejarValoracion() {
-
-  // }
-
   
 }

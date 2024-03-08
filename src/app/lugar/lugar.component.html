@@ -28,7 +28,7 @@
     <div class="opiniones">
         <p *ngIf="comentarios?.length == 0">Aún no hay valoraciones de este sitio.</p>
         <div *ngFor="let comentario of comentarios, index as i" class="">
-            <p><strong>{{ usuarios[i] }}:</strong> {{ comentario.comentario }}</p>
+            <p *nfIf="comentario.idUsuario == idUsuario"><strong>{{ usuarios[i] }}:</strong> {{ comentario.comentario }}</p>
         </div>
     </div>
 
