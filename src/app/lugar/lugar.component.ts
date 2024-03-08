@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LugarService } from '../service/lugar.service';
 import { LugarModel } from '../models/lugar.model';
@@ -19,7 +19,7 @@ import { Subscription, forkJoin, from, mergeMap } from 'rxjs';
 export class LugarComponent implements OnInit, OnDestroy {
   lugar: LugarModel | null = null;
   imagenes: string[] = [];
-  comentarios: ComentarioModel[] = [];
+  comentarios: ComentarioModel[] | null = null;
   usuarios: string[] = [];
 
   puntuacion: string = '';
@@ -34,10 +34,6 @@ export class LugarComponent implements OnInit, OnDestroy {
   //opinion: string | null = null;
 
   lugarSubscription: Subscription | undefined;
-  comentariosSubscription: Subscription | undefined;
-  mediaPuntuacionesSubscription: Subscription | undefined;
-  sesionIniciadaSubscription: Subscription | undefined;
-  verificarValoracionSubscription: Subscription | undefined;
 
   constructor(
     private _route: ActivatedRoute,
@@ -54,15 +50,12 @@ export class LugarComponent implements OnInit, OnDestroy {
     if (id) {
       this.obtenerLugar(id);
       this.obtenerOpiniones(parseInt(id));
+      
     }
   }
 
   ngOnDestroy(): void {
     this.lugarSubscription?.unsubscribe();
-    this.comentariosSubscription?.unsubscribe();
-    this.mediaPuntuacionesSubscription?.unsubscribe();
-    this.sesionIniciadaSubscription?.unsubscribe();
-    this.verificarValoracionSubscription?.unsubscribe();
   }
 
   obtenerLugar(id: string) {
@@ -81,35 +74,43 @@ export class LugarComponent implements OnInit, OnDestroy {
   }
   
   obtenerOpiniones(id: number) {
-    this.comentariosSubscription = this._comentarioService.getComentariosLugar(id).subscribe({
+    const subscripcion = this._comentarioService.getComentariosLugar(id).subscribe({
       next: (value: ComentarioModel[]) => {
           this.comentarios = value;
+          this.getNombreOpinion();
+      },
+      complete: () => {
+        subscripcion.unsubscribe()
       },
       error: console.log,
-    });
-
-    this.getNombreOpinion()
+    });  
   }
 
   getNombreOpinion() {
-    from(this.comentarios).pipe(
-      mergeMap(comentario =>
-        this._usuarioService.getUsuario(comentario.id)
-      )
-    ).subscribe({
-      next: (usuario: UsuarioModel) => {
-        this.usuarios.push(`${usuario.nombre} ${usuario.apellidos}`);
-      },
-      complete: () => {
-        console.log(this.usuarios);
-      },
-      error: console.log
-    });
+    this.comentarios?.forEach (comentario => {
+      console.log("each")
+      const subscripcion = this._usuarioService.getNombreUsuario(comentario.idUsuario).subscribe({
+        next: (result: { rol: string, token: string } | {}) => {
+  
+          if ('nombre' in result && 'apellidos' in result) {
+            this.usuarios.push (`${result.nombre} ${result.apellidos}`)
+          } else {
+            console.log("error")
+          }
+        },
+        complete: () => {
+          subscripcion.unsubscribe();
+        },
+        error: console.log,
+        
+      });
+    })
+    
     
   }
 
   getMediaPuntuaciones() {
-    this.mediaPuntuacionesSubscription = this._comentarioService.getComentarios().subscribe ({
+    const subscripcion = this._comentarioService.getComentarios().subscribe ({
       next: (comentarios) => {
         for (let coment of comentarios) {
           if (coment.idLugar == this.lugar?.id) {
@@ -129,7 +130,10 @@ export class LugarComponent implements OnInit, OnDestroy {
             error: console.log
           })
         }
-      }
+      },
+      complete: () => {
+        subscripcion.unsubscribe()
+      },
     })
   }
 
@@ -154,13 +158,16 @@ export class LugarComponent implements OnInit, OnDestroy {
   }
 
   verificarValoracion() {
-    this.verificarValoracionSubscription = this._comentarioService.getComentarioUsuario(this.id).subscribe({
+    const subscripcion = this._comentarioService.getComentarioUsuario(this.id).subscribe({
       next: (value: boolean) => {
           if (value) {
             this.puedeValorar = true;
           } else {
             this.puedeValorar = false;
           }
+      },
+      complete: () => {
+        subscripcion.unsubscribe()
       },
       error: console.log
     });

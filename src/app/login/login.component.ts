@@ -13,12 +13,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnDestroy {
+export class LoginComponent {
   logForm: FormGroup;
   email: string = '';
   contrasena: string = '';
-
-  loginSubscription: Subscription | undefined;
 
   constructor(
     private _fb: FormBuilder,
@@ -35,10 +33,6 @@ export class LoginComponent implements OnDestroy {
     })
   }
 
-  ngOnDestroy(): void {
-    this.loginSubscription?.unsubscribe();
-  }
-
   sendLogForm() {
     if(this.logForm.value.email == '' || this.logForm.value.contrasena == ''){
       this._sharedService.openSnackBar('Debe rellenar Usuario y Contraseña.');
@@ -48,9 +42,8 @@ export class LoginComponent implements OnDestroy {
     let loginEmail: string = this.logForm.value.email;
     let loginContrasena: string = this.logForm.value.contrasena;
 
-    this.loginSubscription = this._loginService.loginUsuario(loginEmail, loginContrasena).subscribe({
+    const subscripcion = this._loginService.loginUsuario(loginEmail, loginContrasena).subscribe({
       next: (result: { rol: string, token: string } | {}) => {
-        console.log(result);
 
         if ('rol' in result && 'token' in result) {
           this._cookieService.set('token', result.token);
@@ -60,6 +53,9 @@ export class LoginComponent implements OnDestroy {
         } else {
           this._sharedService.openSnackBar('Los datos introducidos son incorrectos o no existen');
         }
+      },
+      complete: () => {
+          subscripcion.unsubscribe()
       },
       error: console.log
     });

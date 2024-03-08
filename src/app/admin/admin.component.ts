@@ -66,11 +66,14 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
   
   getListaLugares(){
-    this.lugaresSubscription = this._lugarService.getLugares().subscribe({
+    const subscripcion = this._lugarService.getLugares().subscribe({
       next:(res) =>{
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+      },
+      complete: () => {
+        subscripcion.unsubscribe()
       },
       error: console.log
     })

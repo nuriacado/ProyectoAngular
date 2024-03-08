@@ -13,11 +13,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./crear-mod-lugar.component.css']
 })
 
-export class CrearModLugarComponent implements OnInit, OnDestroy {
+export class CrearModLugarComponent implements OnInit {
   
   lugForm: FormGroup;
-
-  dataSubscription: Subscription | undefined;
 
   constructor(
     private _fb: FormBuilder,
@@ -40,10 +38,6 @@ export class CrearModLugarComponent implements OnInit, OnDestroy {
     this.lugForm.patchValue(this.data);
   }
 
-  ngOnDestroy(): void {
-    this.dataSubscription?.unsubscribe();
-  }
-
   sendLugForm() {
     let imagenesFrom = this.lugForm.value.imagenes;
     let listaImagenes = imagenesFrom.split(",").map((imagen: string) => imagen.trim());
@@ -60,18 +54,24 @@ export class CrearModLugarComponent implements OnInit, OnDestroy {
 
       if(this.data && this.data.id !== undefined)         
       {
-        this.dataSubscription = this._lugarService.modLugar(this.data.id, datosLugar).subscribe({
+        const subscripcion = this._lugarService.modLugar(this.data.id, datosLugar).subscribe({
           next: (val: any) => {
             this._sharedService.openSnackBar("El lugar se ha modificado correctamente.");
             this._dialogRef.close(true);      
           },
+          complete: () => {
+            subscripcion.unsubscribe()
+          },
           error: console.log
         });
       } else {                                           
-        this.dataSubscription = this._lugarService.addLugar(datosLugar).subscribe({
+        const subscripcion = this._lugarService.addLugar(datosLugar).subscribe({
           next: (val: any) => {
             this._sharedService.openSnackBar("El lugar se ha añadido correctamente.");
             this._dialogRef.close(true);      
+          },
+          complete: () => {
+            subscripcion.unsubscribe()
           },
           error: console.log
         });

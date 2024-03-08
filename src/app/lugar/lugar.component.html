@@ -26,9 +26,9 @@
 <section class="comentarios">
     <h3>Opiniones:</h3>
     <div class="opiniones">
-        <p *ngIf="comentarios.length == 0">Aún no hay valoraciones de este sitio.</p>
+        <p *ngIf="comentarios?.length == 0">Aún no hay valoraciones de este sitio.</p>
         <div *ngFor="let comentario of comentarios, index as i" class="">
-            <p>{{ usuarios[i] }} {{comentario.idUsuario}}: {{ comentario.comentario }}</p>
+            <p><strong>{{ usuarios[i] }}:</strong> {{ comentario.comentario }}</p>
         </div>
     </div>
 
