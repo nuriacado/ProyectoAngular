@@ -30,10 +30,10 @@ export class ComentarioService {
     return this._http.get<ComentarioModel[]>(`${this.URL_API}`);
   }
 
-  getComentarioUsuario(id: string): Observable<boolean> {
+  getComentarioUsuario(idUsuario: string, idLugar: number): Observable<boolean> {
     return this._http.get<ComentarioModel[]>(`${this.URL_API}`).pipe(
       map(data => {
-        let usuarioValido = data.find((comentario: ComentarioModel) => comentario.idUsuario === id);
+        let usuarioValido = data.find((comentario: ComentarioModel) => comentario.idUsuario === idUsuario && comentario.idLugar == idLugar);
 
         return usuarioValido ? true : false;
       })

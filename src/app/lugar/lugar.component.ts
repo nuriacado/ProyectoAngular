@@ -21,14 +21,16 @@ export class LugarComponent implements OnInit, OnDestroy {
   imagenes: string[] = [];
   comentarios: ComentarioModel[] | null = null;
   usuarios: string[] = [];
+  idLugar: number = 0;
 
   puntuacion: string = '';
   suma: number = 0;
   cantidad: number = 0;
 
   admin: boolean = false;
-  id: string = '';
+  idUsuario: string = '';
   puedeValorar: boolean = true;
+  login: boolean = false;
   //puntuacion: number = 0;
   //valoracion: number | null = null;
   //opinion: string | null = null;
@@ -45,6 +47,7 @@ export class LugarComponent implements OnInit, OnDestroy {
     private _router: Router
   ) {}
 
+  //obtiene los detalles del lugar y sus comentarios
   ngOnInit(): void {
     const id = this._route.snapshot.paramMap.get("id");
     if (id) {
@@ -54,25 +57,32 @@ export class LugarComponent implements OnInit, OnDestroy {
     }
   }
 
+  //se destruyen los procesos activos
   ngOnDestroy(): void {
     this.lugarSubscription?.unsubscribe();
   }
 
+  //se obtiene las imagenes y la informacion del lugar
   obtenerLugar(id: string) {
     this.lugarSubscription = this._lugarService.getLugar(id).subscribe(
       data => {
         this.lugar = data;
         this.imagenes = this.lugar.imagenes;
+        this.idLugar = this.lugar.id
+        this.sesionIniciada();
+        this.verificarValoracion()
       }
     )
   }
 
+  //funcion para cambiar la imagen principal
   cambiarImagen(url: string): void {
     const aux = this.imagenes[0];
     this.imagenes[0] = url;
     this.imagenes[this.imagenes.lastIndexOf(url)] = aux;
   }
   
+  //obtiene todos los comentarios del sitio
   obtenerOpiniones(id: number) {
     const subscripcion = this._comentarioService.getComentariosLugar(id).subscribe({
       next: (value: ComentarioModel[]) => {
@@ -86,9 +96,9 @@ export class LugarComponent implements OnInit, OnDestroy {
     });  
   }
 
+  //obtiene el nombre del usuario que ha puesto un comentario
   getNombreOpinion() {
     this.comentarios?.forEach (comentario => {
-      console.log("each")
       const subscripcion = this._usuarioService.getNombreUsuario(comentario.idUsuario).subscribe({
         next: (result: { rol: string, token: string } | {}) => {
   
@@ -109,6 +119,7 @@ export class LugarComponent implements OnInit, OnDestroy {
     
   }
 
+  //calcula la media de la puntuacion del lugar cuando se inserta una nueva valoracion
   getMediaPuntuaciones() {
     const subscripcion = this._comentarioService.getComentarios().subscribe ({
       next: (comentarios) => {
@@ -137,34 +148,36 @@ export class LugarComponent implements OnInit, OnDestroy {
     })
   }
 
-  sesionIniciada(): boolean {
+  //comprueba si se tiene la sesion iniciada y con que tipo de usuario
+  sesionIniciada(): void {
     let token: string = this._cookieService.get('token');  
     
     if (!token)
-      return false;
+      this.login = false;
     else
     {
       let tokenPayload = JSON.parse(atob(token.split('.')[1]));
-      this.id = tokenPayload.id;
-      this.verificarValoracion();
+      this.idUsuario = tokenPayload.id;
 
       if (tokenPayload.rol === "administrador")
         this.admin = true;
       else 
         this.admin = false;
       
-      return true;
+        this.login = true;
     }
   }
 
+  //se verifica si el usuario puede dejar una valoracion en el lugar, segun su estado de inicio de sesion y su rol
   verificarValoracion() {
-    const subscripcion = this._comentarioService.getComentarioUsuario(this.id).subscribe({
+    console.log(this.idUsuario)
+    console.log(this.idLugar)
+    const subscripcion = this._comentarioService.getComentarioUsuario(this.idUsuario, this.idLugar).subscribe({
       next: (value: boolean) => {
-          if (value) {
-            this.puedeValorar = true;
-          } else {
-            this.puedeValorar = false;
-          }
+        console.log(value)
+          this.puedeValorar = !value;
+
+          console.log(this.puedeValorar)
       },
       complete: () => {
         subscripcion.unsubscribe()

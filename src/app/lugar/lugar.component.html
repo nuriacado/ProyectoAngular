@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div *ngIf="sesionIniciada() && !admin && puedeValorar" class="formulario-opinion">
+    <div *ngIf="login && !admin && puedeValorar" class="formulario-opinion">
         <h3>Deja tu valoración</h3>
         <!--<mat-form-field appearance="fill">
             <mat-label>Puntuación (0-5)</mat-label>
