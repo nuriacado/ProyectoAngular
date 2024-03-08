@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../shared/shared.service';
 import { LugarModel } from '../models/lugar.model';
 import { LugarService } from '../service/lugar.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crear-mod-lugar',
@@ -12,9 +13,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./crear-mod-lugar.component.css']
 })
 
-export class CrearModLugarComponent {
+export class CrearModLugarComponent implements OnInit, OnDestroy {
   
   lugForm: FormGroup;
+
+  dataSubscription: Subscription | undefined;
 
   constructor(
     private _fb: FormBuilder,
@@ -37,6 +40,10 @@ export class CrearModLugarComponent {
     this.lugForm.patchValue(this.data);
   }
 
+  ngOnDestroy(): void {
+    this.dataSubscription?.unsubscribe();
+  }
+
   sendLugForm() {
     let imagenesFrom = this.lugForm.value.imagenes;
     let listaImagenes = imagenesFrom.split(",").map((imagen: string) => imagen.trim());
@@ -48,11 +55,12 @@ export class CrearModLugarComponent {
         this.lugForm.value.descripcion,
         this.lugForm.value.horario,
         listaImagenes,
+        '0'
       );
 
       if(this.data && this.data.id !== undefined)         
       {
-        this._lugarService.modLugar(this.data.id, datosLugar).subscribe({
+        this.dataSubscription = this._lugarService.modLugar(this.data.id, datosLugar).subscribe({
           next: (val: any) => {
             this._sharedService.openSnackBar("El lugar se ha modificado correctamente.");
             this._dialogRef.close(true);      
@@ -60,7 +68,7 @@ export class CrearModLugarComponent {
           error: console.log
         });
       } else {                                           
-        this._lugarService.addLugar(datosLugar).subscribe({
+        this.dataSubscription = this._lugarService.addLugar(datosLugar).subscribe({
           next: (val: any) => {
             this._sharedService.openSnackBar("El lugar se ha añadido correctamente.");
             this._dialogRef.close(true);      

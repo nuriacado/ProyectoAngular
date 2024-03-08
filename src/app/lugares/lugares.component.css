@@ -72,3 +72,7 @@ mat-card-title {
 .icono-amarillo {
     color: yellow;
 }
+
+mat-card-content {
+    text-align: justify;
+}

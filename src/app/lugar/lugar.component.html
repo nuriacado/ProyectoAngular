@@ -15,7 +15,7 @@
 
     <div class="puntuacion">
         <mat-icon class="icono-amarillo">star</mat-icon>
-        <p>{{ lugar.puntuacion }}</p>
+        <p>{{lugar.puntuacion}} </p>
     </div>
 
     <p>{{lugar.descripcion}}</p>
@@ -23,18 +23,18 @@
 
 <hr>
 
-<section class="puntuacion">
+<section class="comentarios">
+    <h3>Opiniones:</h3>
     <div class="opiniones">
-        <h3>Opiniones:</h3>
-        <div *ngFor="let comentario of comentarios">
-            <p>{{ getNombreOpinion(comentario.idUsuario) }}: {{ comentario.comentario }}</p>
+        <p *ngIf="comentarios.length == 0">Aún no hay valoraciones de este sitio.</p>
+        <div *ngFor="let comentario of comentarios, index as i" class="">
+            <p>{{ usuarios[i] }} {{comentario.idUsuario}}: {{ comentario.comentario }}</p>
         </div>
     </div>
 
-    <!--
-    <div *ngIf="sesionIniciada()" class="formulario-opinion">
+    <div *ngIf="sesionIniciada() && !admin && puedeValorar" class="formulario-opinion">
         <h3>Deja tu valoración</h3>
-        <mat-form-field appearance="fill">
+        <!--<mat-form-field appearance="fill">
             <mat-label>Puntuación (0-5)</mat-label>
             <mat-select [(ngModel)]="puntuacionSeleccionada">
                 <mat-option *ngFor="let puntuacion of puntuaciones" [value]="puntuacion">{{ puntuacion }}</mat-option>
@@ -44,5 +44,5 @@
             <textarea matInput placeholder="Opinión" [(ngModel)]="opinionTexto"></textarea>
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="enviarOpinion()" [disabled]="!puntuacionSeleccionada || !opinionTexto">Enviar valoración</button>
-    </div>-->
+    --></div>
 </section>

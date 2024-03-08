@@ -31,4 +31,14 @@ export class UsuarioService {
     );
   }
 
+  getNombreUsuario(id: string): Observable<{ nombre: string, apellidos: string } | {}> {
+    return this._http.get<UsuarioModel[]>(`${this.URL_API}`).pipe(
+      map(data => {
+        console.log(data)
+        let usuarioValido = data.find((usuario: UsuarioModel) => usuario.id === id);
+
+        return usuarioValido ? { nombre: usuarioValido.nombre, apellidos: usuarioValido.apellidos } : {};
+      })
+    );
+  }
 }

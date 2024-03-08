@@ -6,7 +6,7 @@ export class UsuarioModel {
         public telefono: string,
         public contrasena: string,
         public rol: string,
-        public id?: number,
+        public id?: string,
         public fechaNacimiento?: Date,
         public genero?: string,
         public comunidad?: string,

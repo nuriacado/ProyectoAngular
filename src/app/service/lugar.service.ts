@@ -33,4 +33,8 @@ export class LugarService {
   modLugar(id: number, lugar: LugarModel): Observable<LugarModel> {
     return this._http.put<LugarModel>(`${this.URL_API}/${id}`, lugar);
   }
+
+  actualizarPuntuacion(id: number, puntuacion:string): Observable<LugarModel> {
+    return this._http.patch<LugarModel>(`${this.URL_API}/${id}`, {puntuacion: puntuacion})
+  }
 }

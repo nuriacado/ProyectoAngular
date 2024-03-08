@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CrearModLugarComponent } from '../crear-mod-lugar/crear-mod-lugar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LugarService } from '../service/lugar.service';
@@ -9,15 +9,18 @@ import { LugarModel } from '../models/lugar.model';
 import { SharedService } from '../shared/shared.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit, OnDestroy {
   displayedColumns:string[] = ['nombre', 'actions'];
   dataSource!: MatTableDataSource<LugarModel>;
+
+  lugaresSubscription: Subscription | undefined;
 
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -41,6 +44,10 @@ export class AdminComponent {
       this._router.navigate(["/lugares"]);
   }
 
+  ngOnDestroy(): void {
+    this.lugaresSubscription?.unsubscribe();
+  }
+
   abrirCrearModificar(data?: LugarModel){
     let dialogRef;
 
@@ -59,7 +66,7 @@ export class AdminComponent {
   }
   
   getListaLugares(){
-    this._lugarService.getLugares().subscribe({
+    this.lugaresSubscription = this._lugarService.getLugares().subscribe({
       next:(res) =>{
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;

@@ -5,7 +5,6 @@ export class LugarModel {
         public descripcion: string,
         public horario: string,
         public imagenes: string[],
-        public puntuacion?: number,
-        public opiniones?: []
+        public puntuacion: string | null,
     ) {}
 }

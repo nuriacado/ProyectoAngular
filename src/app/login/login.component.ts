@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedService } from '../shared/shared.service';
 import { DialogRef } from '@angular/cdk/dialog';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,12 @@ import { DialogRef } from '@angular/cdk/dialog';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   logForm: FormGroup;
   email: string = '';
   contrasena: string = '';
+
+  loginSubscription: Subscription | undefined;
 
   constructor(
     private _fb: FormBuilder,
@@ -32,6 +35,10 @@ export class LoginComponent {
     })
   }
 
+  ngOnDestroy(): void {
+    this.loginSubscription?.unsubscribe();
+  }
+
   sendLogForm() {
     if(this.logForm.value.email == '' || this.logForm.value.contrasena == ''){
       this._sharedService.openSnackBar('Debe rellenar Usuario y Contraseña.');
@@ -41,7 +48,7 @@ export class LoginComponent {
     let loginEmail: string = this.logForm.value.email;
     let loginContrasena: string = this.logForm.value.contrasena;
 
-    this._loginService.loginUsuario(loginEmail, loginContrasena).subscribe({
+    this.loginSubscription = this._loginService.loginUsuario(loginEmail, loginContrasena).subscribe({
       next: (result: { rol: string, token: string } | {}) => {
         console.log(result);
 

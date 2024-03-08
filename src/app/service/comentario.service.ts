@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ComentarioModel } from '../models/comentario.model';
+import { map } from 'rxjs/operators';
+import { LugarModel } from '../models/lugar.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +23,20 @@ export class ComentarioService {
           throw error; 
         })
       );
+  }
+
+  
+  getComentarios() {
+    return this._http.get<ComentarioModel[]>(`${this.URL_API}`);
+  }
+
+  getComentarioUsuario(id: string): Observable<boolean> {
+    return this._http.get<ComentarioModel[]>(`${this.URL_API}`).pipe(
+      map(data => {
+        let usuarioValido = data.find((comentario: ComentarioModel) => comentario.idUsuario === id);
+
+        return usuarioValido ? true : false;
+      })
+    );
   }
 }

@@ -8,7 +8,7 @@
 </section>
 
 <section class="contenedor">
-  <mat-card *ngFor="let lugar of lugares" class="lugar-card">
+  <mat-card *ngFor="let lugar of lugares; index as i " class="lugar-card">
     <mat-card-title>{{lugar.nombre}}</mat-card-title>
     <img class="imagen-principal" mat-card-image src="{{lugar.imagenes[0]}}" alt="Imagen {{lugar.nombre}}">
     <mat-card-content>
@@ -24,7 +24,7 @@
       <span class="example-spacer"></span>
       <div class="puntuacion">
         <mat-icon class="icono-amarillo">star</mat-icon>
-        <p>{{lugar.puntuacion}}</p>
+        <p>{{ lugar.puntuacion }}</p>
       </div>
     </mat-card-actions>
   </mat-card>

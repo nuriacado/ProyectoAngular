@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LugarService } from '../service/lugar.service';
-import { LugarModel } from '../models/lugar.model';
-
-
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { LugarService } from '../service/lugar.service';
+import { LugarModel } from '../models/lugar.model';
+import { Subscription, forkJoin, tap } from 'rxjs';
+import { ComentarioService } from '../service/comentario.service';
 
 @Component({
   selector: 'app-lugares',
@@ -12,20 +13,27 @@ import 'jspdf-autotable';
   styleUrls: ['./lugares.component.css']
 })
 
-export class LugaresComponent implements OnInit {
+export class LugaresComponent implements OnInit, OnDestroy {
 
   lugares: LugarModel[] = [];
+
+  lugaresSubscription: Subscription | undefined;
 
   constructor (
     private _lugarService: LugarService,
   ) {}
 
   ngOnInit(): void {
-    this._lugarService.getLugares().subscribe(
+    this.lugaresSubscription = this._lugarService.getLugares().subscribe(
       data => {
         this.lugares = data;
       }
     )
+
+  }
+
+  ngOnDestroy(): void {
+    this.lugaresSubscription?.unsubscribe();
   }
 
   exportarPDF(): void {
@@ -41,5 +49,4 @@ export class LugaresComponent implements OnInit {
 
     PDF.save('listado_lugares.pdf');
   }
-
 }
