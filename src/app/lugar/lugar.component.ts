@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LugarService } from '../service/lugar.service';
 import { LugarModel } from '../models/lugar.model';
@@ -7,8 +7,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { ComentarioService } from '../service/comentario.service';
 import { ComentarioModel } from '../models/comentario.model';
 import { SharedService } from '../shared/shared.service';
-import { UsuarioModel } from '../models/usuario.model';
-import { Subscription, forkJoin, from, mergeMap } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-lugar',
@@ -17,6 +18,18 @@ import { Subscription, forkJoin, from, mergeMap } from 'rxjs';
 })
 
 export class LugarComponent implements OnInit, OnDestroy {
+  valForm: FormGroup;
+  puntos: number = 0;
+  opinion: string = '';
+
+  puntuaciones: number[] = [
+    1, 
+    2, 
+    3, 
+    4, 
+    5
+  ];
+  
   lugar: LugarModel | null = null;
   imagenes: string[] = [];
   comentarios: ComentarioModel[] | null = null;
@@ -31,13 +44,11 @@ export class LugarComponent implements OnInit, OnDestroy {
   idUsuario: string = '';
   puedeValorar: boolean = true;
   login: boolean = false;
-  //puntuacion: number = 0;
-  //valoracion: number | null = null;
-  //opinion: string | null = null;
 
   lugarSubscription: Subscription | undefined;
 
   constructor(
+    private _fb: FormBuilder,
     private _route: ActivatedRoute,
     private _lugarService: LugarService,
     private _usuarioService: UsuarioService,
@@ -45,7 +56,12 @@ export class LugarComponent implements OnInit, OnDestroy {
     private _comentarioService: ComentarioService,
     private _sharedService: SharedService,
     private _router: Router
-  ) {}
+  ) {
+    this.valForm = this._fb.group({
+      puntos: ['', Validators.required],
+      opinion: ['', Validators.required],
+    })
+  }
 
   //obtiene los detalles del lugar y sus comentarios
   ngOnInit(): void {
@@ -120,33 +136,7 @@ export class LugarComponent implements OnInit, OnDestroy {
   }
 
   //calcula la media de la puntuacion del lugar cuando se inserta una nueva valoracion
-  getMediaPuntuaciones() {
-    const subscripcion = this._comentarioService.getComentarios().subscribe ({
-      next: (comentarios) => {
-        for (let coment of comentarios) {
-          if (coment.idLugar == this.lugar?.id) {
-            this.suma += coment.puntuacion;
-            this.cantidad ++;
-          }
-        }
-
-        this.puntuacion = this.cantidad > 0 ? (this.suma / this.cantidad).toFixed(1) : 'NV';
-        
-        if (this.lugar && this.lugar.id !== undefined) {
-          this._lugarService.actualizarPuntuacion(this.lugar?.id, this.puntuacion).subscribe({
-            next: (val: any) => {
-              this._sharedService.openSnackBar("El comentario se ha añadido correctamente");
-              this._router.navigate([`/lugar/${this.lugar?.id}`])
-            },
-            error: console.log
-          })
-        }
-      },
-      complete: () => {
-        subscripcion.unsubscribe()
-      },
-    })
-  }
+  
 
   //comprueba si se tiene la sesion iniciada y con que tipo de usuario
   sesionIniciada(): void {
@@ -170,20 +160,70 @@ export class LugarComponent implements OnInit, OnDestroy {
 
   //se verifica si el usuario puede dejar una valoracion en el lugar, segun su estado de inicio de sesion y su rol
   verificarValoracion() {
-    console.log(this.idUsuario)
-    console.log(this.idLugar)
     const subscripcion = this._comentarioService.getComentarioUsuario(this.idUsuario, this.idLugar).subscribe({
       next: (value: boolean) => {
-        console.log(value)
           this.puedeValorar = !value;
-
-          console.log(this.puedeValorar)
       },
       complete: () => {
         subscripcion.unsubscribe()
       },
       error: console.log
     });
+  }
+
+  //manda el formulario de valoracion
+  sendValForm() {
+    if (this.valForm.valid) {
+      let formPuntos: number = this.valForm.value.puntos;
+      let formOpinion: string = this.valForm.value.opinion;
+  
+      let comentData: ComentarioModel = new ComentarioModel(
+        this.idUsuario,
+        this.idLugar,
+        formPuntos,
+        formOpinion
+      );
+  
+      const subscripcion = this._comentarioService.nuevoComentario(comentData).subscribe({
+        next: (val: any) => {
+          this._sharedService.openSnackBar("El comentario se ha añadido correctamente");
+        },
+        complete: () => {
+            subscripcion.unsubscribe()
+            this.getMediaPuntuaciones()
+
+        },
+        error: console.log
+      });
+    }
+
+  }
+
+  getMediaPuntuaciones() {
+    const subscripcion = this._comentarioService.getComentarios().subscribe ({
+      next: (comentarios) => {
+        for (let coment of comentarios) {
+          if (coment.idLugar == this.lugar?.id) {
+            this.suma += coment.puntuacion;
+            this.cantidad ++;
+          }
+        }
+
+        this.puntuacion = this.cantidad > 0 ? (this.suma / this.cantidad).toFixed(1) : 'NV';
+
+        if (this.lugar && this.lugar.id !== undefined) {
+          this._lugarService.actualizarPuntuacion(this.lugar?.id, this.puntuacion).subscribe({
+            next: (val: any) => {
+              window.location.reload();
+            },
+            error: console.log
+          })
+        }
+      },
+      complete: () => {
+        subscripcion.unsubscribe()
+      },
+    })
   }
 
   // dejarValoracion() {

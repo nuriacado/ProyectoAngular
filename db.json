@@ -4,7 +4,7 @@
       "id": "1",
       "nombre": "Iglesia de Santo Domingo",
       "descripcion": "La iglesia de Santo Domingo, antaño de Santo Tomé, es un templo católico de la ciudad española de Soria que data el siglo XII, aunque con reformas de épocas posteriores. Cambió su advocación por la de Santo Domingo cuando se suprimió la parroquia a finales del siglo xix convirtiéndose entonces en iglesia conventual. Fue declarada Monumento Histórico Artístico por decreto de 3 de junio de 1931. En su interior descansa en una capilla anexa el cuerpo de sor Clara de la Concepción Sánchez, declarada venerable madre por el papa Francisco el 3 de abril de 2014.",
-      "puntuacion": "NV",
+      "puntuacion": "4.0",
       "horario": "5",
       "imagenes": [
         "../../assets/img/1/principal.jpg",
@@ -18,7 +18,7 @@
       "id": "2",
       "nombre": "Iglesia de San Juan de Rabanera",
       "descripcion": "La iglesia de San Juan de Rabanera es uno de los monumentos del románico castellano que posee la ciudad española de Soria. En su interior custodia dos impresionantes crucifijos. El del altar mayor, conocido popularmente como Cristo del Olvido o Cillerero, es románico y procede de la antigua iglesia del Monasterio de San Polo; el otro, denominado Cristo del Perdón, se encuentra en el crucero enmarcado por un retablo-marco barroco. Es del siglo XVII y está atribuido a Manuel Pereira.",
-      "puntuacion": "1",
+      "puntuacion": "1.5",
       "horario": "",
       "imagenes": [
         "../../assets/img/2/principal.jpg",
@@ -32,7 +32,7 @@
       "id": "3",
       "nombre": "Parque Alameda de Cervantes",
       "descripcion": "La Alameda de Cervantes, conocida popularmente como La Dehesa, es el jardín por excelencia de la ciudad de Soria (Castilla y León, España), no solo por su ubicación en el mismo centro de la ciudad, donde conviven cientos y cientos de especies de vegetación, sino por su alto valor cultural y paisajístico. Además, es uno de los jardines públicos más antiguos de España y de Europa.\nEs la zona verde más importante de la ciudad y el verdadero pulmón verde del casco urbano. El parque se encuentra en el centro de la ciudad, frente a la Plaza de Mariano Granados y junto al Paseo del Espolón. Hay quien en ella busca los íntimos paseos por donde caminar lentamente, la inconmensurable belleza de La Rosaleda, el delicioso alto del parque en el que se encuentra una verde pradera, las cafeterías para reponer fuerzas, fuentes de agua cristalina, farolas que iluminan las noches de tranquilidad soriana o cómodos bancos que invitan al descanso.",
-      "puntuacion": "NV",
+      "puntuacion": "4.0",
       "horario": "",
       "imagenes": [
         "../../assets/img/3/principal.jpg",
@@ -181,8 +181,36 @@
       "id": "1",
       "idUsuario": "1",
       "idLugar": "2",
-      "puntuacion": "1",
+      "puntuacion": 1,
       "comentario": "puta mierda"
+    },
+    {
+      "id": "c04c",
+      "idUsuario": "1",
+      "idLugar": "1",
+      "puntuacion": 3,
+      "comentario": "jhy"
+    },
+    {
+      "id": "0528",
+      "idUsuario": "2",
+      "idLugar": "1",
+      "puntuacion": 5,
+      "comentario": "fsdf"
+    },
+    {
+      "id": "6470",
+      "idUsuario": "2",
+      "idLugar": "2",
+      "puntuacion": 2,
+      "comentario": "hku"
+    },
+    {
+      "id": "7e0c",
+      "idUsuario": "1",
+      "idLugar": "3",
+      "puntuacion": 4,
+      "comentario": "dsada"
     }
   ]
 }

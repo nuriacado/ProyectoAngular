@@ -34,15 +34,28 @@
 
     <div *ngIf="login && !admin && puedeValorar" class="formulario-opinion">
         <h3>Deja tu valoración</h3>
-        <!--<mat-form-field appearance="fill">
-            <mat-label>Puntuación (0-5)</mat-label>
-            <mat-select [(ngModel)]="puntuacionSeleccionada">
-                <mat-option *ngFor="let puntuacion of puntuaciones" [value]="puntuacion">{{ puntuacion }}</mat-option>
-            </mat-select>
+        <form [formGroup]="valForm" (ngSubmit)="sendValForm()">
+            <mat-form-field class="puntuacion">
+                <mat-label>Puntuacion</mat-label>
+                <mat-select formControlName="puntos">
+                    <mat-option *ngFor="let punto of puntuaciones" [value]="punto">
+                        {{punto}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="valForm.get('puntos')?.hasError('required')">
+                    Debe indicar una puntuación
+                </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill">
-            <textarea matInput placeholder="Opinión" [(ngModel)]="opinionTexto"></textarea>
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="enviarOpinion()" [disabled]="!puntuacionSeleccionada || !opinionTexto">Enviar valoración</button>
-    --></div>
+
+            <mat-form-field class="opinion">
+                <mat-label>Comentario</mat-label>
+                <textarea matInput formControlName="opinion"></textarea>
+                <mat-error *ngIf="valForm.get('opinion')?.hasError('required')">
+                    Debe introducir un comentario
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button type="submit"color="primary">Enviar</button>
+        </form>
+    </div>
 </section>

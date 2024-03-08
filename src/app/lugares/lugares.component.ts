@@ -4,8 +4,7 @@ import 'jspdf-autotable';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LugarService } from '../service/lugar.service';
 import { LugarModel } from '../models/lugar.model';
-import { Subscription, forkJoin, tap } from 'rxjs';
-import { ComentarioService } from '../service/comentario.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lugares',

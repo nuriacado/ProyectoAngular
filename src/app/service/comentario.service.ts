@@ -4,7 +4,6 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ComentarioModel } from '../models/comentario.model';
 import { map } from 'rxjs/operators';
-import { LugarModel } from '../models/lugar.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +14,10 @@ export class ComentarioService {
 
   constructor(private _http: HttpClient) { }  
 
+  nuevoComentario(comentario: ComentarioModel) {
+    return this._http.post<ComentarioModel>(`${this.URL_API}`, comentario);
+  }
+
   getComentariosLugar(idLugar: number): Observable<ComentarioModel[]> {
     return this._http.get<ComentarioModel[]>(`${this.URL_API}?idLugar=${idLugar}`)
       .pipe(
@@ -24,7 +27,6 @@ export class ComentarioService {
         })
       );
   }
-
   
   getComentarios() {
     return this._http.get<ComentarioModel[]>(`${this.URL_API}`);
