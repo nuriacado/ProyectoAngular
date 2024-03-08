@@ -1,0 +1,188 @@
+{
+  "lugares": [
+    {
+      "id": "1",
+      "nombre": "Iglesia de Santo Domingo",
+      "descripcion": "La iglesia de Santo Domingo, antaño de Santo Tomé, es un templo católico de la ciudad española de Soria que data el siglo XII, aunque con reformas de épocas posteriores. Cambió su advocación por la de Santo Domingo cuando se suprimió la parroquia a finales del siglo xix convirtiéndose entonces en iglesia conventual. Fue declarada Monumento Histórico Artístico por decreto de 3 de junio de 1931. En su interior descansa en una capilla anexa el cuerpo de sor Clara de la Concepción Sánchez, declarada venerable madre por el papa Francisco el 3 de abril de 2014.",
+      "puntuacion": "4.9",
+      "horario": "5",
+      "imagenes": [
+        "../../assets/img/1/principal.jpg",
+        "../../assets/img/1/imagen1.jpg",
+        "../../assets/img/1/imagen2.jpg",
+        "../../assets/img/1/imagen3.jpg",
+        "../../assets/img/1/imagen4.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "nombre": "Iglesia de San Juan de Rabanera",
+      "descripcion": "La iglesia de San Juan de Rabanera es uno de los monumentos del románico castellano que posee la ciudad española de Soria. En su interior custodia dos impresionantes crucifijos. El del altar mayor, conocido popularmente como Cristo del Olvido o Cillerero, es románico y procede de la antigua iglesia del Monasterio de San Polo; el otro, denominado Cristo del Perdón, se encuentra en el crucero enmarcado por un retablo-marco barroco. Es del siglo XVII y está atribuido a Manuel Pereira.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/2/principal.jpg",
+        "../../assets/img/2/imagen1.jpg",
+        "../../assets/img/2/imagen2.jpg",
+        "../../assets/img/2/imagen3.jpg",
+        "../../assets/img/2/imagen4.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "nombre": "Parque Alameda de Cervantes",
+      "descripcion": "La Alameda de Cervantes, conocida popularmente como La Dehesa, es el jardín por excelencia de la ciudad de Soria (Castilla y León, España), no solo por su ubicación en el mismo centro de la ciudad, donde conviven cientos y cientos de especies de vegetación, sino por su alto valor cultural y paisajístico. Además, es uno de los jardines públicos más antiguos de España y de Europa.\nEs la zona verde más importante de la ciudad y el verdadero pulmón verde del casco urbano. El parque se encuentra en el centro de la ciudad, frente a la Plaza de Mariano Granados y junto al Paseo del Espolón. Hay quien en ella busca los íntimos paseos por donde caminar lentamente, la inconmensurable belleza de La Rosaleda, el delicioso alto del parque en el que se encuentra una verde pradera, las cafeterías para reponer fuerzas, fuentes de agua cristalina, farolas que iluminan las noches de tranquilidad soriana o cómodos bancos que invitan al descanso.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/3/principal.jpg",
+        "../../assets/img/3/imagen1.jpg",
+        "../../assets/img/3/imagen2.jpg",
+        "../../assets/img/3/imagen3.jpg",
+        "../../assets/img/3/imagen4.jpg"
+      ]
+    },
+    {
+      "id": "4",
+      "nombre": "Museo Numantino",
+      "descripcion": "El Museo Numantino, ubicado en Soria, es una institución cultural que conserva, restaura, impulsa la investigación sobre las colecciones y divulga la historia de la provincia de Soria a través de diversas muestras de arte y arqueología, y especialmente dedicado al yacimiento de Numancia, así como a los de Tiermes y Uxama.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/4/principal.jpg",
+        "../../assets/img/4/imagen1.jpg",
+        "../../assets/img/4/imagen2.jpg",
+        "../../assets/img/4/imagen3.jpg",
+        "../../assets/img/4/imagen4.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "nombre": "Plaza Mayor",
+      "descripcion": "La plaza Mayor de Soria es un espacio público de la ciudad española de Soria, cabecera de la calle del Collado, una de las vías más comerciales y concurridas de la ciudad, que subiendo desde esta plaza llega hasta la de Herradores, en el antiguo límite de las murallas.\nNos situamos en el arco que da acceso a la calle Zapatería, llamado del Cuerno, y que servía de puerta de toriles cuando aún se usaba la plaza para los festejos taurinos, hasta mediados del siglo pasado. Descubriremos, de izquierda a derecha: la antigua Casa del Común, la iglesia de Santa María la Mayor, la mal llamada Torre de Doña Urraca, el Palacio de la Audiencia y la Fuente de los Leones en el centro de la plaza.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/5/principal.jpg",
+        "../../assets/img/5/imagen1.jpg",
+        "../../assets/img/5/imagen2.jpg",
+        "../../assets/img/5/imagen3.jpg",
+        "../../assets/img/5/imagen4.webp"
+      ]
+    },
+    {
+      "id": "6",
+      "nombre": "Palacio de los Condes de Gómara",
+      "descripcion": "El palacio fue levantado por Francisco López de Río y Salcedo en el siglo xvi. Alférez mayor de Soria y su provincia, lo mandó construir a finales del siglo xvi, finalizándose la obra principal en 1592 según la inscripción de su fachada. Eran ya por entonces señores de las tierras de Almenar y los miembros de esta familia noble llegarían a obtener el Condado de Gómara en 1692 por el rey Carlos II, el último de los Austrias.\nAlgunos autores como Nicolás Rabal sostienen que la fachada no forma un conjunto regular, porque no es más que la mitad u octava parte de lo que se pensaba construir, y sin embargo su base y frente miden 109 metros de longitud. Según el mismo historiador en el proyecto entraba el derribo del palacio viejo. Sin embargo, dadas las amplias proporciones de la majestuosa fachada y las etapas constructivas del edificio, parece claro que si se construyó lo que se tenía ideado e incluso se amplió posteriormente para unirlo con el palacio viejo a principios del siglo xvii.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/6/principal.jpg",
+        "../../assets/img/6/imagen1.jpeg",
+        "../../assets/img/6/imagen2.jpg",
+        "../../assets/img/6/imagen3.jpg",
+        "../../assets/img/6/imagen4.jpg"
+      ]
+    },
+    {
+      "id": "7",
+      "nombre": "Concatedral de San Pedro",
+      "descripcion": "La concatedral de San Pedro, auténtica joya de la arquitectura románica castellana con la que cuenta la ciudad española de Soria. Desde 1959 acumula el título de concatedral, fecha a partir de la cual comparte la sede catedralicia con El Burgo de Osma; hasta ese año se titulaba colegiata de San Pedro.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/7/principal.jpg",
+        "../../assets/img/7/imagen1.jpg",
+        "../../assets/img/7/imagen2.jpeg",
+        "../../assets/img/7/imagen3.jpg",
+        "../../assets/img/7/imagen4.jpg"
+      ]
+    },
+    {
+      "id": "8",
+      "nombre": "Monte Valonsadero",
+      "descripcion": "El monte Valonsadero se encuentra dentro del término municipal de Soria (Castilla y León, España), a escasos 4 kilómetros al noroeste del casco urbano y cuenta con 2793 hectáreas de superficie de masa arbolada, grandes praderas y vegas.\nDispone de una importante riqueza natural paisajística, geológica, así como de flora y fauna. Por todo ello el monte está protegido y catalogado como zona natural de esparcimiento (BOCYL, agosto 2005) y monte de utilidad pública (1862). Destaca de forma notable su riqueza artística por los numerosos abrigos con pinturas rupestres que se ubican en diferentes áreas del monte, que están datados entre los años 3000 y 2000 antes de Cristo por lo que cuentan con la declaración de Bien de Interés Cultural. Además, Valonsadero es un área recreativa y de ocio. Su aprovechamiento ha supuesto para Soria una fuente de recursos económicos a lo largo de la historia. Por todo esto y por la importancia de este monte como escenario de varios festejos relacionados con las fiestas de San Juan o de la Madre de Dios de la capital soriana, Valonsadero es desde el punto de vista emocional y sentimental, un espacio entrañable para los habitantes de Soria.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/8/principal.jpg",
+        "../../assets/img/8/imagen1.jpg",
+        "../../assets/img/8/imagen2.jpg",
+        "../../assets/img/8/imagen3.jpg",
+        "../../assets/img/8/imagen4.jpeg"
+      ]
+    },
+    {
+      "id": "9",
+      "nombre": "La casa de los Poetas",
+      "descripcion": "La Casa de los Poetas ocupa la tercera planta del Casino Círculo Amistad Numancia, un edificio emblemático de la ciudad, de gran valor arquitectónico y cultural frecuentado también por poetas. Foro de ocio y de debate ha sido desde su origen, a mediados del siglo XIX, testigo del devenir histórico de Soria, manteniendo impecable su aire señorial.\nEste museo es un espacio expositivo e interactivo dedicado a los grandes líricos que cantaron a Soria: Gustavo Adolfo Bécquer, Antonio Machado y Gerardo Diego. El visitante puede acercarse a la poesía de estos grandes poetas, no solo a través de sus versos y sus objetos, sino también a través de imágenes y sonidos que recrean el espacio y el tiempo en el que vivieron.",
+      "puntuacion": "4.9",
+      "horario": "",
+      "imagenes": [
+        "../../assets/img/9/principal.jpg",
+        "../../assets/img/9/imagen1.jpg",
+        "../../assets/img/9/imagen2.jpg",
+        "../../assets/img/9/imagen3.jpg",
+        "../../assets/img/9/imagen4.jpg"
+      ]
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "email": "correo1@correo.com",
+      "nombre": "nombre1",
+      "apellidos": "apellidos1",
+      "telefono": "telefono1",
+      "contrasena": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJlbWFpbCI6ImNvcnJlbzFAY29ycmVvLmNvbSIsIm5vbWJyZSI6Im5vbWJyZTEiLCJhcGVsbGlkb3MiOiJhcGVsbGlkb3MxIiwidGVsZWZvbm8iOiJ0ZWxlZm9ubzEiLCJjb250cmFzZW5hIjoiMTIzIiwicm9sIjoidXN1YXJpbyIsImZlY2hhTmFjaW1pZW50byI6IjAxLTAxLTIwMDAiLCJnZW5lcm8iOiJtdWplciIsImNvbXVuaWRhZCI6IkFuZGFsdWPDrWEifQ.F_gckwUBSFVs20aLiGD4BPY84ROzOvL8tlOfEWyqNxA",
+      "rol": "usuario",
+      "fechaNacimiento": "01-01-2000",
+      "genero": "mujer",
+      "comunidad": "Andalucía"
+    },
+    {
+      "id": "2",
+      "email": "correo2@correo.com",
+      "nombre": "nombre2",
+      "apellidos": "apellidos2",
+      "telefono": "telefono2",
+      "contrasena": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJlbWFpbCI6ImNvcnJlbzJAY29ycmVvLmNvbSIsIm5vbWJyZSI6Im5vbWJyZTIiLCJhcGVsbGlkb3MiOiJhcGVsbGlkb3MyIiwidGVsZWZvbm8iOiJ0ZWxlZm9ubzIiLCJjb250cmFzZW5hIjoiMTIzIiwicm9sIjoidXN1YXJpbyIsImZlY2hhTmFjaW1pZW50byI6IjAyLTAyLTIwMDAiLCJnZW5lcm8iOiJtdWplciIsImNvbXVuaWRhZCI6IkFuZGFsdWPDrWEifQ.WNpYGPfzuYyagA3571mk0vgBx5typTlpeOtgoygdMrg",
+      "rol": "usuario",
+      "fechaNacimiento": "02-02-2000",
+      "genero": "mujer",
+      "comunidad": "Andalucía"
+    },
+    {
+      "id": "3",
+      "email": "admin@correo.com",
+      "nombre": "nombre3",
+      "apellidos": "apellidos3",
+      "telefono": "telefono3",
+      "contrasena": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJlbWFpbCI6ImFkbWluQGNvcnJlby5jb20iLCJub21icmUiOiJub21icmUzIiwiYXBlbGxpZG9zIjoiYXBlbGxpZG9zMyIsInRlbGVmb25vIjoidGVsZWZvbm8zIiwiY29udHJhc2VuYSI6IjEyMyIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJmZWNoYU5hY2ltaWVudG8iOiIwMy0wMy0yMDAwIiwiZ2VuZXJvIjoibXVqZXIiLCJjb211bmlkYWQiOiJBbmRhbHVjw61hIn0.hJj7S8w2P1cm1g03lWtgnYmQFO5gfjLeIlDDuvtmjyo",
+      "rol": "administrador",
+      "fechaNacimiento": "03-03-2000",
+      "genero": "mujer",
+      "comunidad": "Andalucía"
+    },
+    {
+      "id": "58ee",
+      "email": "nuriacastro.d@gmail.com",
+      "nombre": "Nuria",
+      "apellidos": "Castro Domínguez",
+      "telefono": "+34601217897",
+      "contrasena": "token",
+      "rol": "usuario",
+      "genero": null,
+      "comunidad": "Andalucía"
+    }
+  ],
+  "comentarios": [
+    {
+      "id": "1",
+      "idUsuario": "58ee",
+      "idLugar": "2",
+      "puntuacion": "1",
+      "comentario": "puta mierda"
+    }
+  ]
+}

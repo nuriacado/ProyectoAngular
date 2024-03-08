@@ -1,0 +1,21 @@
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+  
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+  
+.contenedor p {
+    margin: 5px 0;
+}
+
+span{
+    flex: 1 1 auto;
+}

@@ -1,0 +1,37 @@
+mat-grid-tile {
+    height: fit-content;
+}
+
+mat-grid-list{
+    margin: 25px 0;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+section {
+    width: 80%;
+    margin: 35px auto;
+    
+    h2 {
+        font-size: 2em;
+        text-align: center
+    };
+    p {
+        font-size: 1.3em;
+        line-height: 1.5em;
+    }
+}
+
+.icono-amarillo {
+    color: yellow;
+}
+
+hr {
+    margin: 0 10%;
+}
+
+h3 {
+    font-size: 1.5em;
+}

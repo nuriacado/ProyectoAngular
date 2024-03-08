@@ -1,0 +1,31 @@
+<section class="titulo">
+  <h1>Soria</h1>
+  <p>Soria es un municipio y una ciudad española, capital de la provincia homónima, situada en el este de la comunidad autónoma de Castilla y León. Cuenta con una población de 40 096 habitantes (INE 2023). El término municipal tiene una superficie de 271,77 km², con una densidad de 143,07 hab./km². Situada a unos 1063 m de altitud, es la segunda capital de provincia más alta, tras Ávila.</p>
+    
+  <p>Actualmente, su población de 40 096 habitantes hace de Soria la capital de provincia menos poblada de Castilla y León y la segunda menos poblada de España (tras Teruel). Es particularmente importante en su economía la industria agroalimentaria, y un creciente turismo atraído por su patrimonio cultural. Soria fue mencionada por la Unesco como buen ejemplo al incluir la dieta mediterránea en su lista Representativa del Patrimonio Cultural Inmaterial de la Humanidad. También está bajo consideración su inclusión como Reserva de la Biosfera.</p>
+  
+  <button mat-flat-button color="primary" (click)="exportarPDF()">Exportar a PDF</button>
+</section>
+
+<section class="contenedor">
+  <mat-card *ngFor="let lugar of lugares" class="lugar-card">
+    <mat-card-title>{{lugar.nombre}}</mat-card-title>
+    <img class="imagen-principal" mat-card-image src="{{lugar.imagenes[0]}}" alt="Imagen {{lugar.nombre}}">
+    <mat-card-content>
+      <p *ngIf="lugar.descripcion.split(' ').length >= 50">
+        {{lugar.descripcion.split(' ').splice(0,50).join(' ')}}...
+      </p>
+      <p *ngIf="lugar.descripcion.split(' ').length < 50">
+        {{lugar.descripcion}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a href="/lugar/{{lugar.id}}">+ Leer más</a>
+      <span class="example-spacer"></span>
+      <div class="puntuacion">
+        <mat-icon class="icono-amarillo">star</mat-icon>
+        <p>{{lugar.puntuacion}}</p>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</section>

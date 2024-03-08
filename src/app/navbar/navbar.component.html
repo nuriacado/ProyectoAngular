@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span class="nombre-ciudad" routerLink="lugares">Soria</span>
+  <span class="example-spacer"></span>
+  <div *ngIf="!sesionIniciada()">
+    <button mat-flat-button color="basic" routerLink="/registro">Registro</button>
+    <button mat-flat-button color="accent" (click)="abrirLogin()">Login</button>
+  </div>
+
+  <div *ngIf="sesionIniciada()">
+    <button *ngIf="admin" mat-flat-button color="basic" routerLink="/admin">Administrar</button>
+    <button mat-flat-button color="accent" (click)="cerrarSesion()">Salir ({{nombre}})</button>
+  </div>
+</mat-toolbar>

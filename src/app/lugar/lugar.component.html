@@ -1,0 +1,48 @@
+<section class="descripcion" *ngIf="lugar">
+    <h2>{{lugar.nombre}}</h2>
+
+    <mat-grid-list cols="4" rowHeight="200px">
+        <mat-grid-tile colspan="2" rowspan="2">
+            <img src="{{imagenes[0]}}" alt="Imagen principal" >
+        </mat-grid-tile>
+        <div *ngFor="let imagen of imagenes; index as i">
+            <mat-grid-tile *ngIf="i!=0" colspan="1" rowspan="1">
+                <img  src="{{imagenes[i]}}" (click)="cambiarImagen(imagenes[i])" alt="Imagen {{i}}" >
+            </mat-grid-tile>
+        </div>
+        
+    </mat-grid-list>
+
+    <div class="puntuacion">
+        <mat-icon class="icono-amarillo">star</mat-icon>
+        <p>{{ lugar.puntuacion }}</p>
+    </div>
+
+    <p>{{lugar.descripcion}}</p>
+</section>
+
+<hr>
+
+<section class="puntuacion">
+    <div class="opiniones">
+        <h3>Opiniones:</h3>
+        <div *ngFor="let comentario of comentarios">
+            <p>{{ getNombreOpinion(comentario.idUsuario) }}: {{ comentario.comentario }}</p>
+        </div>
+    </div>
+
+    <!--
+    <div *ngIf="sesionIniciada()" class="formulario-opinion">
+        <h3>Deja tu valoración</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Puntuación (0-5)</mat-label>
+            <mat-select [(ngModel)]="puntuacionSeleccionada">
+                <mat-option *ngFor="let puntuacion of puntuaciones" [value]="puntuacion">{{ puntuacion }}</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+            <textarea matInput placeholder="Opinión" [(ngModel)]="opinionTexto"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="enviarOpinion()" [disabled]="!puntuacionSeleccionada || !opinionTexto">Enviar valoración</button>
+    </div>-->
+</section>

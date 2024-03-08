@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.row{
+    display: flex;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+section {
+    width: 600px;
+    margin: 100px auto;
+}
+
+form {
+    margin-top: 45px;
+}
+
+.botones {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    button {
+        margin-top: 20px;
+        width: 50%;
+    }
+}

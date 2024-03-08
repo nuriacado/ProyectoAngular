@@ -1,0 +1,63 @@
+<section>
+    <h2 mat-dialog-title>Registro de usuario</h2>
+    <form [formGroup]="lugForm" (ngSubmit)="sendLugForm()">
+        <mat-dialog-content>
+            <div class="row">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" formControlName="nombre">
+                    
+                    <mat-error *ngIf="lugForm.get('nombre')?.hasError('required')">
+                        Debe indicar el nombre
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-form-field">
+                    <mat-label>ID</mat-label>
+                    <input matInput type="text" formControlName="id">
+                    
+                    <mat-error *ngIf="lugForm.get('id')?.hasError('required')">
+                        Debe indicar el id
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        
+            <div class="row">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput formControlName="descripcion"></textarea>
+                    
+                    <mat-error *ngIf="lugForm.get('descripcion')?.hasError('required')">
+                        Debe indicar una descripcion
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Horario</mat-label>
+                    <input matInput type="text" formControlName="horario">
+                    
+                    <mat-error *ngIf="lugForm.get('horario')?.hasError('required')">
+                        Debe indicar el horario
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Imágenes</mat-label>
+                    <input matInput type="text" formControlName="imagenes">
+                    
+                    <mat-error *ngIf="lugForm.get('imagenes')?.hasError('required')">
+                        Debe introducir cinco imágenes
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </mat-dialog-content>
+
+        <mat-dialog-actions>
+            <button mat-stroked-button color="primary" mat-dialog-close>Cancelar</button>
+            <button mat-raised-button type="submit"color="primary">Confirmar</button>
+        </mat-dialog-actions>
+    </form>
+</section>

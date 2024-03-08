@@ -1,0 +1,74 @@
+.titulo {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    h1 {
+        width: 100%;
+        font-weight: 700;
+        font-size: 2.5em;
+        line-height: 2em;
+    }
+    p {
+        text-align: justify;
+        font-size: 1.3em;
+        line-height: 1.5em;   
+    }
+    button {
+        margin-top: 20px;
+    }
+}
+
+.lugar-card {
+    max-width: 400px;
+    padding: 10px 25px;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.puntuacion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: min-content;
+    p {
+        margin: 0 0 0 10px;
+    }
+}
+
+.imagen-principal {
+    aspect-ratio: 16/9;
+    margin-bottom: 20px;
+}
+
+mat-card-title {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.icono-amarillo {
+    color: yellow;
+}
