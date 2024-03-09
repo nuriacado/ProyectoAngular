@@ -14,11 +14,13 @@
     </mat-grid-list>
 
     <div class="puntuacion">
-        <mat-icon class="icono-amarillo">star</mat-icon>
+        <mat-icon *ngIf="lugar.puntuacion == 'NV'" class="icono-gris">star</mat-icon>
+        <mat-icon *ngIf="lugar.puntuacion != 'NV'" class="icono-amarillo">star</mat-icon>
+        
         <p>{{lugar.puntuacion}} </p>
     </div>
 
-    <p>{{lugar.descripcion}}</p>
+    <p class="descripcion">{{lugar.descripcion}}</p>
 </section>
 
 <hr>
@@ -28,7 +30,7 @@
     <div class="opiniones">
         <p *ngIf="comentarios?.length == 0">Aún no hay valoraciones de este sitio.</p>
         <div *ngFor="let comentario of comentarios, index as i" class="">
-            <p *nfIf="comentario.idUsuario == idUsuario"><strong>{{ usuarios[i] }}:</strong> {{ comentario.comentario }}</p>
+            <p><strong>{{ usuarios[i] }}:</strong> {{ comentario.comentario }}</p>
         </div>
     </div>
 

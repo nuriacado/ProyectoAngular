@@ -12,6 +12,7 @@ export class LoginService {
 
   constructor(private _http: HttpClient) { }  
 
+  //función que devuelve el rol y token de un usuario si existe en la bd
   loginUsuario(email: string, contrasena: string): Observable<{ rol: string, token: string } | {}> {
     return this._http.get<UsuarioModel[]>(`${this.URL_API}`).pipe(
       map(data => {

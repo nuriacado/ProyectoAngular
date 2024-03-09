@@ -60,7 +60,7 @@
       "id": "5",
       "nombre": "Plaza Mayor",
       "descripcion": "La plaza Mayor de Soria es un espacio público de la ciudad española de Soria, cabecera de la calle del Collado, una de las vías más comerciales y concurridas de la ciudad, que subiendo desde esta plaza llega hasta la de Herradores, en el antiguo límite de las murallas.\nNos situamos en el arco que da acceso a la calle Zapatería, llamado del Cuerno, y que servía de puerta de toriles cuando aún se usaba la plaza para los festejos taurinos, hasta mediados del siglo pasado. Descubriremos, de izquierda a derecha: la antigua Casa del Común, la iglesia de Santa María la Mayor, la mal llamada Torre de Doña Urraca, el Palacio de la Audiencia y la Fuente de los Leones en el centro de la plaza.",
-      "puntuacion": "NV",
+      "puntuacion": "3.0",
       "horario": "",
       "imagenes": [
         "../../assets/img/5/principal.jpg",
@@ -211,6 +211,13 @@
       "idLugar": "3",
       "puntuacion": 4,
       "comentario": "dsada"
+    },
+    {
+      "id": "2a06",
+      "idUsuario": "1",
+      "idLugar": "5",
+      "puntuacion": 3,
+      "comentario": "z dfzb fb"
     }
   ]
 }

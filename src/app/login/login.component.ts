@@ -33,6 +33,7 @@ export class LoginComponent {
     })
   }
 
+  //se manda la solicitud para iniciar sesión, si los datos son correctos se crea una cookie con el token
   sendLogForm() {
     if(this.logForm.value.email == '' || this.logForm.value.contrasena == ''){
       this._sharedService.openSnackBar('Debe rellenar Usuario y Contraseña.');
@@ -42,6 +43,7 @@ export class LoginComponent {
     let loginEmail: string = this.logForm.value.email;
     let loginContrasena: string = this.logForm.value.contrasena;
 
+    //se busca en la base de datos que exista el usuario con los datos introducidos
     const subscripcion = this._loginService.loginUsuario(loginEmail, loginContrasena).subscribe({
       next: (result: { rol: string, token: string } | {}) => {
 
@@ -50,10 +52,12 @@ export class LoginComponent {
           this._dialogRef.close(true);
           this._router.navigate(['/home']);
 
+          //si no existe se muestra un mensaje de error
         } else {
           this._sharedService.openSnackBar('Los datos introducidos son incorrectos o no existen');
         }
       },
+      //se cierra el proceso una vez se ha completado la petición
       complete: () => {
           subscripcion.unsubscribe()
       },

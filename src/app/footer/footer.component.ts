@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class FooterComponent {
   fecha: string | null = null;
 
+  //se establece la fecha actual
   ngOnInit() {
     let hoy = new Date();
     this.fecha = hoy.toLocaleDateString();

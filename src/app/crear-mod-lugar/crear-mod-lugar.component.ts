@@ -34,10 +34,12 @@ export class CrearModLugarComponent implements OnInit {
     })
   }
 
+  //se introducen valores en el formulario si el lugar ya existe
   ngOnInit(): void {
     this.lugForm.patchValue(this.data);
   }
 
+  //se modifica o crea el lugar introducido en el formulario
   sendLugForm() {
     let imagenesFrom = this.lugForm.value.imagenes;
     let listaImagenes = imagenesFrom.split(",").map((imagen: string) => imagen.trim());
@@ -52,6 +54,7 @@ export class CrearModLugarComponent implements OnInit {
         '0'
       );
 
+      //si el lugar no existia con anterioridad se crea
       if(this.data && this.data.id !== undefined)         
       {
         const subscripcion = this._lugarService.modLugar(this.data.id, datosLugar).subscribe({
@@ -64,6 +67,8 @@ export class CrearModLugarComponent implements OnInit {
           },
           error: console.log
         });
+
+      //si ya existia se modifican sus datos
       } else {                                           
         const subscripcion = this._lugarService.addLugar(datosLugar).subscribe({
           next: (val: any) => {

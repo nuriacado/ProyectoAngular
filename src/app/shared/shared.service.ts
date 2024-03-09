@@ -8,6 +8,7 @@ export class SharedService {
 
   constructor(private _snackBar: MatSnackBar) { }
 
+  //función que abre un snackbar con el mensaje pasado por parámetros
   openSnackBar(message:string){
     this._snackBar.open(message, '', {
       duration:2000, 

@@ -10,7 +10,7 @@ import { JwtInterceptorInterceptor } from './utils/jwt-interceptor.interceptor';
 
 //COMPONENTES PROPIOS
 import { NavbarComponent } from './navbar/navbar.component';
-import { LugaresComponent } from './lugares/lugares.component';
+import { HomeComponent } from './home/home.component';
 import { LugarComponent } from './lugar/lugar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -37,18 +37,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LugaresComponent,
+    HomeComponent,
     LugarComponent,
     FooterComponent,
     RegistroComponent,
     LoginComponent,
     AdminComponent,
-    CrearModLugarComponent
+    CrearModLugarComponent,
+    ConfirmacionComponent
   ],
   imports: [
     BrowserModule,

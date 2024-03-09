@@ -11,21 +11,25 @@
   <mat-card *ngFor="let lugar of lugares; index as i " class="lugar-card">
     <mat-card-title>{{lugar.nombre}}</mat-card-title>
     <img class="imagen-principal" mat-card-image src="{{lugar.imagenes[0]}}" alt="Imagen {{lugar.nombre}}">
-    <mat-card-content>
-      <p *ngIf="lugar.descripcion.split(' ').length >= 50">
-        {{lugar.descripcion.split(' ').splice(0,50).join(' ')}}...
-      </p>
-      <p *ngIf="lugar.descripcion.split(' ').length < 50">
-        {{lugar.descripcion}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <a href="/lugar/{{lugar.id}}">+ Leer más</a>
-      <span class="example-spacer"></span>
-      <div class="puntuacion">
-        <mat-icon class="icono-amarillo">star</mat-icon>
-        <p>{{ lugar.puntuacion }}</p>
-      </div>
-    </mat-card-actions>
+    <div class="info">
+      <mat-card-content>
+        <p *ngIf="lugar.descripcion.split(' ').length >= 50">
+          {{lugar.descripcion.split(' ').splice(0,50).join(' ')}}...
+        </p>
+        <p *ngIf="lugar.descripcion.split(' ').length < 50">
+          {{lugar.descripcion}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a href="/lugar/{{lugar.id}}">+ Leer más</a>
+        <span class="example-spacer"></span>
+        <div class="puntuacion">
+          <mat-icon *ngIf="lugar.puntuacion == 'NV'" class="icono-gris">star</mat-icon>
+          <mat-icon *ngIf="lugar.puntuacion != 'NV'" class="icono-amarillo">star</mat-icon>
+
+          <p>{{ lugar.puntuacion }}</p>
+        </div>
+      </mat-card-actions>
+    </div>
   </mat-card>
 </section>

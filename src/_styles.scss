@@ -1,0 +1,129 @@
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+
+@import "@angular/material/theming";
+@include mat-core();
+
+//CREO ESQUEMAS DE COLOR PERSONALIZADO PARA PRIMARY, ACCENT Y WARN
+$my-custom-primary: (
+    50: #e8eff2,
+    100: #c5d8df,
+    200: #9ebeca,
+    300: #77a4b4,
+    400: #5991a4,
+    500: #3c7d94,
+    600: #36758c,
+    700: #2e6a81,
+    800: #276077,
+    900: #1a4d65,
+    A100: #a1dfff,
+    A200: #6eceff,
+    A400: #3bbdff,
+    A700: #21b4ff,
+    contrast: (
+        50: #000000,
+        100: #000000,
+        200: #000000,
+        300: #000000,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+        A100: #000000,
+        A200: #000000,
+        A400: #ffffff,
+        A700: #ffffff,
+    )
+);
+
+$my-custom-accent: (
+    50 : #f9f2e3,
+    100 : #f0deb9,
+    200 : #e6c88b,
+    300 : #dbb15c,
+    400 : #d4a139,
+    500 : #cc9016,
+    600 : #c78813,
+    700 : #c07d10,
+    800 : #b9730c,
+    900 : #ad6106,
+    A100 : #ffebd8,
+    A200 : #ffd1a5,
+    A400 : #ffb872,
+    A700 : #ffab59,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-custom-warn: (
+    50 : #f8e5ee,
+    100 : #eebdd6,
+    200 : #e392ba,
+    300 : #d8669e,
+    400 : #cf458a,
+    500 : #c72475,
+    600 : #c1206d,
+    700 : #ba1b62,
+    800 : #b31658,
+    900 : #a60d45,
+    A100 : #ffd4e2,
+    A200 : #ffa1bf,
+    A400 : #ff6e9d,
+    A700 : #ff558b,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+//CREO VARIABLES PARA LOS COLORES PRIMARY, ACCENT Y WARN CON LOS VALORES QUE QUIERO
+$my-app-primary: mat-palette($my-custom-primary);
+$my-app-accent: mat-palette($my-custom-accent, A700);
+$my-app-warn: mat-palette($my-custom-warn);
+
+//CREO EL TEMA CLARO DE MI PÁGINA WEB
+$my-app-theme: mat-light-theme(
+    (
+        color: (
+            primary: $my-app-primary,
+            accent: $my-app-accent,
+            warn: $my-app-warn
+        ),
+    )
+);
+
+//APLICO EL TEMA A LA PÁGINA
+@include angular-material-theme($my-app-theme);

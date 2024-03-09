@@ -10,6 +10,7 @@ import { SharedService } from '../shared/shared.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 
 @Component({
   selector: 'app-admin',
@@ -33,6 +34,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     private _router: Router
   ){};
 
+  //al iniciar el componente se obtiene la lista y se comprueba que el usuario tenga permisos para acceder
   ngOnInit():void{
     this.getListaLugares();
     
@@ -44,27 +46,12 @@ export class AdminComponent implements OnInit, OnDestroy {
       this._router.navigate(["/lugares"]);
   }
 
+  //se destruyen los procesos activos cuando se cierra el componente
   ngOnDestroy(): void {
     this.lugaresSubscription?.unsubscribe();
   }
-
-  abrirCrearModificar(data?: LugarModel){
-    let dialogRef;
-
-    if (data) {
-      dialogRef = this._dialog.open(CrearModLugarComponent, {data})
-    } else {
-      dialogRef = this._dialog.open(CrearModLugarComponent);
-    }
-
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val)
-          this.getListaLugares();
-      }
-    });
-  }
   
+  //función para listar todos los lugares que hay en la base de datos
   getListaLugares(){
     const subscripcion = this._lugarService.getLugares().subscribe({
       next:(res) =>{
@@ -79,6 +66,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     })
   }
   
+  //función para buscar una palabra o frase entre los nombres de los lugares
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -88,6 +76,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
   }
 
+  //función que abre el cuadro de modificación y creación de lugares
   abrirCrearModLugar(data?: LugarModel){
     let dialogRef;
 
@@ -95,7 +84,6 @@ export class AdminComponent implements OnInit, OnDestroy {
       dialogRef = this._dialog.open(CrearModLugarComponent, {data});
     else
       dialogRef = this._dialog.open(CrearModLugarComponent);
-
 
     dialogRef.afterClosed().subscribe({   
       next: (val) => {
@@ -105,6 +93,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  //función que carga los datos de la lista de lugares
   getLista() {
     this._lugarService.getLugares().subscribe({
       next: (res) => {
@@ -116,6 +105,21 @@ export class AdminComponent implements OnInit, OnDestroy {
     })
   }
 
+  //función que muestra un cuadro de confirmación de borrado
+  confirmacion(id: string, nombre:string) {
+    const dialogRef = this._dialog.open(ConfirmacionComponent, {
+      width: '25em',
+      data: { titulo: 'Confirmar', mensaje: `¿Estás seguro de que quieres borrar "${nombre}"?` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { 
+        this.borrarLugar(id); 
+      }
+    });
+  }
+
+  //función que borra el lugar pasado por parametros
   borrarLugar(id: string){
     this._lugarService.borrarLugar(id).subscribe({
       next: (res) => {

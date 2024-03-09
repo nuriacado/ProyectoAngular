@@ -8,11 +8,11 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lugares',
-  templateUrl: './lugares.component.html',
-  styleUrls: ['./lugares.component.css']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 
-export class LugaresComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
 
   lugares: LugarModel[] = [];
 
@@ -22,30 +22,33 @@ export class LugaresComponent implements OnInit, OnDestroy {
     private _lugarService: LugarService,
   ) {}
 
+  //se obtiene la lista de todos los lugares de la base de datos
   ngOnInit(): void {
     this.lugaresSubscription = this._lugarService.getLugares().subscribe(
       data => {
         this.lugares = data;
       }
     )
-
   }
 
+  //se cierran los procesos abiertos
   ngOnDestroy(): void {
     this.lugaresSubscription?.unsubscribe();
   }
 
+  //funcion que utiliza la libreria jsPDF para generar un PDF con tabla con los datos de los lugares
   exportarPDF(): void {
     const PDF = new jsPDF();
-    PDF.text('Listado de Lugares Registrados', 70, 10);
+    PDF.text('Listado de Lugares Registrados', 70, 10);   //titulo y su posicion en el documento
 
     (PDF as any).autoTable({ 
-      head: [['Nombre', 'Descripción']],
-      body: this.lugares.map(
+      head: [['Nombre', 'Descripción']], //cabecera
+      body: this.lugares.map(            //cuerpo de la tabla
         lugar => [lugar.nombre, lugar.descripcion]
       )
     });
 
+    //se descarga el documento generado
     PDF.save('listado_lugares.pdf');
   }
 }

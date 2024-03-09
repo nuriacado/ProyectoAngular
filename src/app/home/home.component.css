@@ -1,7 +1,6 @@
 .titulo {
     width: 80%;
     margin: 0 auto;
-    margin-top: 50px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -70,9 +69,21 @@ mat-card-title {
 }
 
 .icono-amarillo {
-    color: yellow;
+    color: #ffb872;
+}
+
+.icono-gris {
+    color: #676767;
 }
 
 mat-card-content {
     text-align: justify;
 }
+
+.info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+

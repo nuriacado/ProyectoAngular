@@ -26,8 +26,12 @@ section {
 }
 
 .icono-amarillo {
-    color: yellow;
+    color: #ffb872;
     margin-right: 0.5em;
+}
+
+.icono-gris {
+    color: #676767;
 }
 
 hr {
@@ -72,3 +76,7 @@ form {
     }
 }
 
+.descripcion {
+    text-align: justify;
+    margin: 2em auto;
+}

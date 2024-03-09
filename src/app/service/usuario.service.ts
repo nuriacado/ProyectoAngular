@@ -12,15 +12,17 @@ export class UsuarioService {
 
   constructor(private _http: HttpClient) { }
 
+  //funcion que crea un nuevo usuario
   addUser(user: UsuarioModel): Observable<UsuarioModel>{
-    
     return this._http.post<UsuarioModel>(`${this.URL_API}`, user);
   }
 
+  //función que devuelve un usuario
   getUsuario(id:string): Observable<UsuarioModel> {
     return this._http.get<UsuarioModel>(`${this.URL_API}/${id}`);
   }
 
+  //función que devuelve si existe algun usuario con el email pasado por parámetros
   getUsuarioEmail(email: string): Observable<boolean> {
     return this._http.get<UsuarioModel[]>(`${this.URL_API}`).pipe(
       map(data => {

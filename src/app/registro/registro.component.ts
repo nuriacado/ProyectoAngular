@@ -63,6 +63,7 @@ export class RegistroComponent {
     })
   }
 
+  //se comprueba que las dos contraseñas introducidas sean iguales
   comprobarContrasena(): boolean {
     if (this.regForm.value.contrasena == this.regForm.value.contrasenaRepetida){
       return true;
@@ -71,11 +72,13 @@ export class RegistroComponent {
     return false;
   }
 
+  //se envia el formulario de registro y se comprueba si se cumplen los requisitos para crear el usuario
   submitRegForm() {
     if (this.regForm.valid) {
 
       if (this.comprobarContrasena()) {
 
+        //se comprueba que el usuario intrucido no este repetido y si no lo esta se crea el nuevo usuario
         this._usuarioService.getUsuarioEmail(this.regForm.value.email).subscribe(
           data => {
             if (!data) {
@@ -104,7 +107,7 @@ export class RegistroComponent {
               this._usuarioService.addUser(userData).subscribe({
                 next: (val: any) => {
                   this._sharedService.openSnackBar("El usuario se ha añadido correctamente.");
-                  this._router.navigate(['/home']);
+                  this._router.navigate(['/home']);   //se redirige al home (lugares)
                 },
                 error: console.error
               });

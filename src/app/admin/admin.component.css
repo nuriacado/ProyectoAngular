@@ -27,3 +27,12 @@ button {
 .acciones {
     right: 0;
 }
+
+.celda-nombre {
+    width: 85%;
+}
+
+.celda-acciones {
+    width: 15%;
+    text-align: center;
+}
